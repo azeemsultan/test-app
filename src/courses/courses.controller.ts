@@ -23,11 +23,16 @@ export class CoursesController {
 
     @Post()
     @UsePipes(new ValidationPipe())
+    createStudent(@Body() data:Courses){
+        this.logger.log(JSON.stringify(data))
+        return this.courseService.create(data)
+    }
+    /*
     createCourse(id:'1' , @Body() data:Courses){
         this.logger.log(JSON.stringify(data))
         this.logData({id,data})
         return this.courseService.create(id,data)    
-    }
+    }*/
 
     @Get(':id')
     readCourse(@Param('id') id:string){

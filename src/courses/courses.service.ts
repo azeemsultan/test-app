@@ -15,9 +15,10 @@ private studentRep: Repository<Students>
 
 
     async showAll(){
-        return await this.courseRep.find({relations:['student']});
+        return await this.courseRep.find();
      
      }
+     /*
      async create(userId: string,data: Courses){
          const studet = await this.studentRep.findOne({where: {id:'14'}})
      
@@ -26,7 +27,12 @@ private studentRep: Repository<Students>
          await this.courseRep.save(crse);
          return {...crse, Total:crse.stlimit-1, f: studet.email};
      }
-     
+     */
+     async create(data: Courses){
+        const course = await this.courseRep.create(data);
+        await this.courseRep.save(course);
+        return course;
+    }
      async read(id:string) {
          const course = await this.courseRep.findOne({where: {id} });
          if(!course){
