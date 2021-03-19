@@ -11,10 +11,10 @@ Course Name
 Students Limit (Numeric)
   */
   @Column({type:'varchar',length:50,nullable: false})
-   @IsAlpha()
+   @IsAlpha() //Name must be alphanumeric
     name: string;
     @Column({type:'varchar',length:50,nullable: false})
-    @MaxLength(50)
+    @MaxLength(50) //max student limit can be 50 for any course
     @MinLength(1)
   stlimit: number;
 

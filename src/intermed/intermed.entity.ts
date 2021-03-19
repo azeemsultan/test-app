@@ -8,28 +8,16 @@ export class Intermeds extends BaseEntity{
   /*
   Intermediate table for students and courses
   */
-    @Column({type:'varchar',length:50,nullable: false}) 
+  @Column({type:"int",nullable:false})
 
-    studentID: string;
+    studentID: number;
 
-    @Column({type:'varchar',length:50,nullable: false})
-    courseID: string;
-
-    @UpdateDateColumn()
-    updatedAt: Date;
-
-    @Column({type:'varchar',length:50,nullable: true}) 
-
-    registered_courses: string;
-
-    @Column({type:'varchar',length:50,})
-    course_name: string;
+    @Column({type:"int",nullable:false})
+    courseID: number;
 
 
- /* @ManyToMany(type=> Students, student=> student.course)
-  student: Students
-  @ManyToMany(type=> Courses, course=>course.student) 
-  course: Courses[]; */
+
+
 
 }
 

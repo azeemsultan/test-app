@@ -2,7 +2,7 @@ import { Controller, Logger, UsePipes } from '@nestjs/common';
 import { Body, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ValidationPipe } from 'src/shared/validation.pipe';
 import { StudentDTO } from 'src/students/student.dto';
-import { Students, User } from 'src/students/students.entity';
+import { Students } from 'src/students/students.entity';
 import { Courses } from './courses.entity';
 import { CoursesService } from './courses.service';
 
@@ -11,28 +11,18 @@ export class CoursesController {
     private logger = new Logger('coursesController')
     constructor(private courseService: CoursesService){}
 
-    private logData(options:any){
-        options.user && this.logger.log('USER'+JSON.stringify(options.user))
-        options.data && this.logger.log('Data'+JSON.stringify(options.data))
-        options.id && this.logger.log('courses'+JSON.stringify(options.id))
-    }
     @Get()
-    showAllCourses(){
+    showAllCourses(){ //returns all courses
         return this.courseService.showAll();
     }
 
     @Post()
-    @UsePipes(new ValidationPipe())
+    @UsePipes(new ValidationPipe()) //ValidationPipe used for validation
     createStudent(@Body() data:Courses){
-        this.logger.log(JSON.stringify(data))
+        this.logger.log(JSON.stringify(data)) //logs object data using stringify method
         return this.courseService.create(data)
     }
-    /*
-    createCourse(id:'1' , @Body() data:Courses){
-        this.logger.log(JSON.stringify(data))
-        this.logData({id,data})
-        return this.courseService.create(id,data)    
-    }*/
+  
 
     @Get(':id')
     readCourse(@Param('id') id:string){

@@ -8,6 +8,16 @@ export class IntermedController {
     private logger = new Logger('coursesController')
     constructor(private intermedService: IntermedService){}
 
+    @Post()
+    NewReg(@Body() data:Intermeds){
+        return this.intermedService.create(data);
+    }
+    @Get(':id')
+    findwithid(@Param('id') id:string){
+        return this.intermedService.findwithid(id);
+    }
+}
+/*
     @Get()
     showAllCourses(){
         return this.intermedService.showAll();
@@ -25,7 +35,7 @@ export class IntermedController {
         this.logger.log(JSON.stringify(data))
         this.logData({id,data})
         return this.courseService.create(id,data)    
-    }*/
+    }
 
     @Get()
         //implementation
@@ -44,6 +54,6 @@ export class IntermedController {
        destroyCourse(@Param('id') id:string){
         return this.intermedService.destroy(id);
     }
+*/
 
 
-}

@@ -15,47 +15,38 @@ private studentRep: Repository<Students>
 
 
     async showAll(){
-        return await this.courseRep.find();
+        return await this.courseRep.find(); //returns all courses
      
      }
-     /*
-     async create(userId: string,data: Courses){
-         const studet = await this.studentRep.findOne({where: {id:'14'}})
-     
-         const crse = await this.courseRep.create({...data, student:ob});
-         var ob = {Total: crse.stlimit-1,f:studet.email}
-         await this.courseRep.save(crse);
-         return {...crse, Total:crse.stlimit-1, f: studet.email};
-     }
-     */
-     async create(data: Courses){
-        const course = await this.courseRep.create(data);
-        await this.courseRep.save(course);
+   
+     async create(data: Courses){ 
+        const course = await this.courseRep.create(data); //stores course data in course variable
+        await this.courseRep.save(course); //saves in table
         return course;
     }
-     async read(id:string) {
-         const course = await this.courseRep.findOne({where: {id} });
+     async read(id:string) { //returns course with specific id
+         const course = await this.courseRep.findOne({where: {id} }); //stores data in course
          if(!course){
             throw new HttpException('Not Found',HttpStatus.NOT_FOUND)
         }
         return course;
      }
      async update(id:string, data:Partial<Courses>){
-         let course = await this.courseRep.update( id ,data);
+         let course = await this.courseRep.update( id ,data); //fetches record with specific id
          if(!course){
             throw new HttpException('Not Found',HttpStatus.NOT_FOUND)
         }
-          await this.courseRep.findOne(id);
-          return course;
+          await this.courseRep.findOne(id); 
+          return course; //updates the record
      
      }
      
      async destroy(id:string){
-        const course = await this.courseRep.delete(id);
+        const course = await this.courseRep.delete(id); //fetches record with id
         if(!course){
             throw new HttpException('Not Found',HttpStatus.NOT_FOUND)
         }
-        await this.courseRep.delete(id);
+        await this.courseRep.delete(id); //delete the record
         return course;
      }
      
