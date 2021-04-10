@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Logger, Param, Post, Put, UsePipes } fro
 import { ValidationPipe } from 'src/shared/validation.pipe';
 import { Intermeds } from './intermed.entity';
 import { IntermedService } from './intermed.service';
+import { AllowAnyRole, Roles, Unprotected } from 'nest-keycloak-connect';
 
 @Controller('intermed')
 export class IntermedController {
@@ -9,10 +10,12 @@ export class IntermedController {
     constructor(private intermedService: IntermedService){}
 
     @Post()
+    @Roles('admin')
     NewReg(@Body() data:Intermeds){
         return this.intermedService.create(data);
     }
     @Get(':id')
+    @Roles('admin')
     findwithid(@Param('id') id:string){
         return this.intermedService.findwithid(id);
     }

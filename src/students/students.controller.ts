@@ -5,6 +5,7 @@ import { StudentsService } from './students.service';
 import {ValidationPipe} from '../shared/validation.pipe'
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { fileURLToPath } from 'node:url';
+import { AllowAnyRole, Roles, Unprotected } from 'nest-keycloak-connect';
 @Controller('students')
 export class StudentsController {
     private logger = new Logger('studentsController')
@@ -29,6 +30,7 @@ export class StudentsController {
     }
   
     @Get(':id')
+    @Roles('admin')
     readStudent(@Param('id') id:string){
         return this.studentService.read(id);
     }
