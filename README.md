@@ -38,6 +38,49 @@ $ npm install
 # development
 $ npm run start
 
+## Setup Keycloak
+
+```bash
+#1) download, extract the folder
+ Open the folder, move to bin folder and run standalone batch file
+ Once it is done, open a browser and paste http://localhost:8080/auth/ 
+ 
+ #2) Setup a admin account and login
+  Create your own realm by clicking the realm
+
+ #3) Create a user by clicking user option at bar
+  Click at add user and fill only username,firstname,lastname fields
+  Click at credentials at top menu of user to set password
+
+  #4) Create your own client by clicking client option at bar
+   1-Click at create and fill client ID with client protocol as openid-connect and url as http://localhost:8080/
+   2-Go to your client and select settings option and change Access Type as  "" CONFIDENTIAL "" 
+   3-Click at  Authentication Flow Overrides option at bottom of page and set BROWSER FLOW as "BROWSER" and DIRECT GRANT FLOW as "DIRECT GRANT"
+   4- Move to roles menu (at top of Clients menu ) and click at ADD ROLE button and create some roles
+
+   #5) Add Realm roles
+   1- Click at Add roles to create necessary roles
+   
+   #6) Click Users option below Manage section
+   1- Select a user, Click Role Mappings at top options
+   2- Click client roles dropdown option and select client
+   3- At available roles, click the role you want to assign to the selected user and click add selected button below
+
+   #7) Replace your REALM, CLIENT information in APP.MODULE file in NESTJS project
+   1- replace realm name  i.e "myrealm" in file with your REALM name.
+   2- replace client name i.e "myclient" in file with your CLIENT name.
+   3- you can find your client secret in your realm's client, click at credentials to get your client secret key
+
+   
+
+
+
+
+
+
+
+
+
 # watch mode
 $ npm run start:dev
 
