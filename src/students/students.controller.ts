@@ -30,7 +30,7 @@ export class StudentsController {
     }
   
     @Get(':id')
-    @Roles('admin')
+  
     readStudent(@Param('id') id:string){
         return this.studentService.read(id);
     }
