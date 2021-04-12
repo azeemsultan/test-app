@@ -24,7 +24,7 @@
 
 ## Description
 
-It's a demo application that allows a user to create update delete and read students and courses and register them in courses
+It's a demo application that allows a user to create update delete and read students and courses and register them in courses, A student can register in max 6 courses and student have to student himself into courses by providing his ID and course ID.
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
@@ -82,7 +82,13 @@ $ npm run start
    3- you can find your client secret in your realm's client, click at credentials to get your client secret key
    4- That's all.
 
-  
+   # Open postman and generate a token
+   1- Send a post request to  http://localhost:8080/auth/realms/myrealm/protocol/openid-connect/token
+   2- Dont forget to replace myrealm in url with your realm name
+   3- Copy the generated token
+   4- Send a get request to http://localhost:3000 with authorization as token bearer with token 
+   5- Success and now you can try postman API endpoints
+
 # watch mode
 $ npm run start:dev
 
