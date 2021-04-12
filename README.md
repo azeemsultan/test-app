@@ -84,13 +84,13 @@ $ npm install
    4- Send a get request to http://localhost:3000 with authorization as token bearer with token 
    5- Success and now you can try postman API endpoints
 ```
-## Setting Keyclock server
+## Other helpful blog to setup keycloak
 ```bash
 # This Blog might be helpful if you any trouble setting up keycloak server
 # !! IMPORTANT !!
   Change access type in protocol as ' CONFIDENTIAL ' not 'Token Bearer'
 # This blog might be helpful as it contains images and detailed description
-# https://medium.com/devops-dudes/secure-nestjs-rest-api-with-keycloak-745ef32a2370
+ https://medium.com/devops-dudes/secure-nestjs-rest-api-with-keycloak-745ef32a2370
 ```
 ## Running the app
 
