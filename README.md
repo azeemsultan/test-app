@@ -98,8 +98,6 @@ $ npm install
 # development
 $ npm run start
 
-
-
 # watch mode
 $ npm run start:dev
 
@@ -108,15 +106,20 @@ $ npm run start:prod
 ```
 
 
-## POSTMAN API TESTINGS
+## POSTMAN API ENDPOINTS
 
 ```bash
+#COLLECTION COPY
+https://www.getpostman.com/collections/1b225b1a764db366cc68
+
 http://localhost:3000/students
 http://localhost:3000/students/1
 http://localhost:3000/courses
 http://localhost:3000/courses/1
 http://localhost:3000/intermed
 http://localhost:3000/intermed/1
+
+
 ```
 
 ## Test
