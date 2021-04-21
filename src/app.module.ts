@@ -9,6 +9,7 @@ import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { HttpErrorFilter } from './shared/http-error.filter';
 import { LoggingInterceptor } from './shared/logging.interceptor';
 import { IntermedModule } from './intermed/intermed.module';
+import { ConfigModule } from '@nestjs/config';
 import {
   KeycloakConnectModule,
   ResourceGuard,
@@ -25,7 +26,13 @@ import { APP_GUARD } from '@nestjs/core';
     secret: '47188bdc-53bf-4a5f-98cc-631c4b2e3ac3',
     // Secret key of the client taken from keycloak server
   }),
-    TypeOrmModule.forRoot(config), CoursesModule, StudentsModule, IntermedModule],
+  ConfigModule.forRoot({isGlobal: true}),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      url: process.env.DATABASE_URL,
+      autoLoadEntities: true,
+      synchronize: true
+    }), CoursesModule, StudentsModule, IntermedModule],
 
   controllers: [AppController]
   ,

@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Logger, Param, Post, Put, UploadedFile, UploadedFiles, UseInterceptors, UsePipes } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Inject, Logger, Param, Post, Put, UploadedFile, UploadedFiles, UseInterceptors, UsePipes } from '@nestjs/common';
 import { StudentDTO } from './student.dto';
 import { multerOptions, Students } from './students.entity';
 import { StudentsService } from './students.service';
@@ -6,12 +6,16 @@ import {ValidationPipe} from '../shared/validation.pipe'
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { fileURLToPath } from 'node:url';
 import { AllowAnyRole, Roles, Unprotected } from 'nest-keycloak-connect';
+import { ClientProxy } from '@nestjs/microservices';
 @Controller('students')
 export class StudentsController {
     private logger = new Logger('studentsController')
-    constructor(private studentService: StudentsService){}
+    constructor(private studentService: StudentsService,
+        @Inject('STUDENT_SERVICE') private readonly client: ClientProxy
+        ){}
     @Get()
     showAllStudents(){
+        this.client.emit('hello','Hello from RabbitMQ')
         return this.studentService.showAll();
     }
     @Post('/upload') 
